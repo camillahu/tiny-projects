@@ -9,6 +9,7 @@ def PrintArraySamples(choice: Int): Unit = {
   //        val shuffled:Array[Int] = Random.shuffle(numbers).toArray
   //       shuffled
   //      }
+  //
 
   def generateArray(min: Int, max: Int, duplicate:Boolean): Array[Int] = {
     val count:Int = 1000000
