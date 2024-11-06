@@ -2,17 +2,11 @@ import scala.collection.mutable
 import scala.util.Random
 import scala.collection.mutable.{ArrayBuffer, Set}
 
-def PrintArraySamples(choice: Int): Unit = {
 
-  //      def generateArrayNoDup(start: Int, end: Int): Array[Int] = {
-  //        val numbers:Seq[Int] = start until end
-  //        val shuffled:Array[Int] = Random.shuffle(numbers).toArray
-  //       shuffled
-  //      }
-  //
+def A(choice: Int): Unit = {
 
-  def generateArray(min: Int, max: Int, duplicate:Boolean): Array[Int] = {
-    val count:Int = 1000000
+  def generateArray(min: Int, max: Int, duplicate: Boolean): Array[Int] = {
+    val count: Int = 1000000
 
     val numbers = if (duplicate) {
       ArrayBuffer[Int]() //ArrayBuffer gir mulighet for duplikater
@@ -31,17 +25,57 @@ def PrintArraySamples(choice: Int): Unit = {
     //returnerer resultatet som et array
     val result: Array[Int] = numbers.toArray
     result
-    }
+  }
 
   // pattern matching for valg (muligens implementere brukervalg)
   choice match {
-    case 1 => println(generateArray(min = 0, max= 200000000, duplicate= false).take(10).mkString(", "))
+    case 1 => println(generateArray(min = 0, max = 200000000, duplicate = false).take(10).mkString(", "))
     case 2 => println(generateArray(min = -5000000, max = 10000000, duplicate = false).take(10).mkString(", "))
-    case 3 => println(generateArray(min = -500000, max = 0, duplicate = true).take(10).mkString(", "))
+    case 3 => println(generateArray(min = -5000000, max = 10000000, duplicate = true).take(10).mkString(", "))
   }
 }
 
-PrintArraySamples(2)
+
+
+def B(choice: Int): Unit = {
+
+  def generateArray(min: Int, max: Int, duplicate: Boolean): Array[Double] = {
+    val count: Int = 1000000
+
+    val numbers = if (duplicate) {
+      ArrayBuffer[Double]()
+    } else {
+      mutable.Set[Double]()
+    }
+
+    while (numbers.size < count) {
+      val randomInt = Random.between(min,max)
+      val randomDouble = BigDecimal(Random.nextDouble).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
+      val randomNum = randomInt + randomDouble
+      numbers += randomNum;
+    }
+    val result: Array[Double] = numbers.toArray
+    result
+  }
+
+  choice match {
+    case 1 => println(generateArray(min = 0, max = 10000, duplicate = false).take(10).mkString(", "))
+    case 2 => println(generateArray(min = -5000, max = 10000, duplicate = false).take(10).mkString(", "))
+    case 3 => println(generateArray(min = -5000, max = 10000, duplicate = true).take(10).mkString(", "))
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

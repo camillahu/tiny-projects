@@ -3,4 +3,7 @@
   <component name="ScalaProjectSettings">
     <option name="migrateConfigurationsNotificationShown" value="true" />
   </component>
+  <component name="WorksheetDefaultProjectSettings">
+    <option name="interactive" value="true" />
+  </component>
 </project>
