@@ -98,48 +98,48 @@ def B(choice: Int): Unit = {
 
 //Refactor 2 (perplexity-hjelp):
 
-object RandomNumGenerator {
-
-  def generateNums[T](min: Int, max: Int, datatype: String, allowDuplicates: Boolean): Vector[T] = {
-    val count = 1000
-
-    val generator: () => T = datatype match {
-      case "int" => () => Random.between(min, max).asInstanceOf[T]
-      case "double" => () =>
-        BigDecimal(Random.between(min, max).toDouble + Random.nextDouble())
-          .setScale(2, BigDecimal.RoundingMode.HALF_UP).asInstanceOf[T]
-      case _ => throw new IllegalArgumentException("Unsupported datatype")
-    }
-    if (allowDuplicates) {
-      LazyList.fill(count)(generator()).toVector
-    } else {
-      LazyList
-        .continually(generator())
-        .distinct
-        .take(count)
-        .toVector
-    }
-  }
-
-  def printFirstTen[T](numbers: Vector[T]): Unit = {
-    println(numbers.take(10).mkString(", "))
-  }
-
-  def generateAndPrint(choice: Int): Unit = {
-    val result = choice match {
-      case 1 => generateNums(min = 0, max = 10000, datatype = "int", allowDuplicates = false)
-      case 2 => generateNums(min = -5000, max = 5000, datatype = "int", allowDuplicates = false)
-      case 3 => generateNums(min = -5000, max = 5000, datatype = "int", allowDuplicates = true)
-      case 4 => generateNums(min = 0, max = 10000, datatype = "double", allowDuplicates = false)
-      case 5 => generateNums(min = -5000, max = 5000, datatype = "double", allowDuplicates = false)
-      case 6 => generateNums(min = -5000, max = 5000, datatype = "double", allowDuplicates = true)
-      case _ => Vector.empty[Double]
-    }
-    printFirstTen(result)
-  }
-}
-
-RandomNumGenerator.generateAndPrint(4)
+//object RandomNumGenerator {
+//
+//  def generateNums[T](min: Int, max: Int, datatype: String, allowDuplicates: Boolean): Vector[T] = {
+//    val count = 1000
+//
+//    val generator: () => T = datatype match {
+//      case "int" => () => Random.between(min, max).asInstanceOf[T]
+//      case "double" => () =>
+//        BigDecimal(Random.between(min, max).toDouble + Random.nextDouble())
+//          .setScale(2, BigDecimal.RoundingMode.HALF_UP).asInstanceOf[T]
+//      case _ => throw new IllegalArgumentException("Unsupported datatype")
+//    }
+//    if (allowDuplicates) {
+//      LazyList.fill(count)(generator()).toVector
+//    } else {
+//      LazyList
+//        .continually(generator())
+//        .distinct
+//        .take(count)
+//        .toVector
+//    }
+//  }
+//
+//  def printFirstTen[T](numbers: Vector[T]): Unit = {
+//    println(numbers.take(10).mkString(", "))
+//  }
+//
+//  def generateAndPrint(choice: Int): Unit = {
+//    val result = choice match {
+//      case 1 => generateNums(min = 0, max = 10000, datatype = "int", allowDuplicates = false)
+//      case 2 => generateNums(min = -5000, max = 5000, datatype = "int", allowDuplicates = false)
+//      case 3 => generateNums(min = -5000, max = 5000, datatype = "int", allowDuplicates = true)
+//      case 4 => generateNums(min = 0, max = 10000, datatype = "double", allowDuplicates = false)
+//      case 5 => generateNums(min = -5000, max = 5000, datatype = "double", allowDuplicates = false)
+//      case 6 => generateNums(min = -5000, max = 5000, datatype = "double", allowDuplicates = true)
+//      case _ => Vector.empty[Double]
+//    }
+//    printFirstTen(result)
+//  }
+//}
+//
+//RandomNumGenerator.generateAndPrint(4)
 
 //-----------------------------------------------
 
