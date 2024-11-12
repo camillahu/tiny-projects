@@ -124,7 +124,7 @@ def B(choice: Int): Unit = {
 //  def printFirstTen[T](numbers: Vector[T]): Unit = {
 //    println(numbers.take(10).mkString(", "))
 //  }
-//
+/
 //  def generateAndPrint(choice: Int): Unit = {
 //    val result = choice match {
 //      case 1 => generateNums(min = 0, max = 10000, datatype = "int", allowDuplicates = false)
