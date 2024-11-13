@@ -11,7 +11,7 @@ object AB {
     intPart + decimalPart
   }
 
-  def generateIntArray(min: Int, max: Int, allowDuplicates: Boolean, count:Int = 1000000): Array[Int] = {
+  def generateIntArray(min: Int, max: Int, allowDuplicates: Boolean, count:Int = 1000): Array[Int] = {
     if (allowDuplicates) Array.fill(count)(generateInt(min, max))
     else  {
       val range = max-min + 1
@@ -20,7 +20,7 @@ object AB {
     }
   }
 
-  def generateDoubleArray(min: Int, max: Int, allowDuplicates: Boolean, count:Int = 1000000): Array[Double] = {
+  def generateDoubleArray(min: Int, max: Int, allowDuplicates: Boolean, count:Int = 1000): Array[Double] = {
     if (allowDuplicates) Array.fill(count)(generateDouble(min, max))
     else  {
       val range = max-min + 1
@@ -29,19 +29,19 @@ object AB {
     }
   }
 
-  def arrayToPrint(choice: String): String = {
+  def makeArray(choice: String): Array[_] = {
     choice match  {
-      case "1"=> generateIntArray(0, 2000000, allowDuplicates = false).mkString(", ")
-      case "2"=> generateIntArray(-500000, 1000000,allowDuplicates = false).mkString(", ")
-      case "3"=>  generateIntArray(-500000, 1000000,allowDuplicates = true).mkString(", ")
-      case "4"=> generateDoubleArray(0, 2000000, allowDuplicates = false).mkString(", ")
-      case "5"=> generateDoubleArray(-5000, 10000, allowDuplicates = false).mkString(", ")
-      case "6"=>generateDoubleArray(-5000, 10000, allowDuplicates = true).mkString(", ")
+      case "1"=> generateIntArray(0, 2000000, allowDuplicates = false).sorted
+      case "2"=> generateIntArray(-500000, 1000000,allowDuplicates = false).sorted
+      case "3"=>  generateIntArray(-500000, 1000000,allowDuplicates = true).sorted
+      case "4"=> generateDoubleArray(0, 2000000, allowDuplicates = false).sorted
+      case "5"=> generateDoubleArray(-5000, 10000, allowDuplicates = false).sorted
+      case "6"=> generateDoubleArray(-5000, 10000, allowDuplicates = true).sorted
     }
   }
 }
 
-println(AB.arrayToPrint("2"))
+println(AB.makeArray("4").mkString(", "))
 
 
 
