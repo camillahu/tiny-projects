@@ -68,10 +68,11 @@ object RandomStringGenerator {
       .distinct
       .take(10)
       .toList
+      .sorted
   }
 }
 
-println(s"${RandomStringGenerator.generateStringList(n = true, s = true, u = true).mkString(", ")}")
+println(s"${RandomStringGenerator.generateStringList(n = true, s = true, u = true).mkString(" , ")}")
 
 
 

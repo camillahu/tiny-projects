@@ -23,15 +23,32 @@ object ListGenerator {
     Random.shuffle(newList)
   }
 
-  def motherList(): List[List[String]] = {
+  lazy val motherList: List[List[String]] = {
     val randomList = LazyList.continually(stringListGenerator(8))
-      .take(99999)
+      .take(999)
       .toList
 
     val listWithDefault= defaultStringGenerator() +: randomList
     Random.shuffle(listWithDefault)
   }
+
+  def findIndexOf(defaultString:String = "AbCDeEFg", motherList: List[List[String]] = motherList): Option[(Int, Int)] = {
+    val index = motherList.zipWithIndex.collectFirst {
+      case (innerList, i) if innerList.contains(defaultString) =>
+        (i, innerList.indexOf(defaultString))
+    }
+    index
+  }
+
+  def printIndexes():Unit = {
+    findIndexOf() match {
+      case Some((outerIndex, innerIndex)) => println(s"outer index: $outerIndex, inner index: $innerIndex")
+      case None => println("Element not found")
+    }
+  }
 }
-println(ListGenerator.motherList().map( innerList => innerList.mkString(", ")).take(100).mkString("\n"))
+println(ListGenerator.motherList.map( innerList => innerList.mkString(", ")).mkString("\n"))
+ListGenerator.printIndexes()
+
 
 
